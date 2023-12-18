@@ -4,7 +4,8 @@
 ### Projet symfony / react
 ###### Partage de liste de lecture sur une idée de Yoandev.
 
-composer Pour tester chez vous cette application :
+Pour tester chez vous cette application :
+Après avoir cloner le projet (ou dowlad le .zip )
 
 ```
 composer install
