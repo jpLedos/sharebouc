@@ -1,5 +1,5 @@
 # ShareBouc
-![logo sharebouc](image.png "Logo shareBouc")
+![logo sharebouc](images/bouc_puce.jpeg "Logo shareBouc")
 
 ### Projet symfony / react
 ###### Partage de liste de lecture sur une idée de Yoandev.
