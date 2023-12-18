@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil ShareBook{% endblock %}
+
+{% block body %}
+
+    <div class="hero rounded-t-xl grow flex flex-col justify-center items-center bg-black ">
+        <div class="-translate-y-5 w-[70%] flex flex-col justify-center items-center text-purple-200">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl  text-justify font-bold py-4" >PARTAGEZ VOS ENVIES DE LECTURE ENTRE AMIS...</h1>
+            <p class="text-xl sm:text-2xl font-semibold">L'acces à ce site est limité à un cercle restreint ! L'inscription ne se fait que par parrainage !</p>
+            <a 
+            class="mt-4 px-3 py-2 rounded-xl bg-zinc-800"
+            href={{ path('app_login') }} title="logout icons">
+                Se connecter</a>
+        </div>
+
+    </div>    
+
+    {{ include("./home/_notice.html.twig") }}
+
+{% endblock %}

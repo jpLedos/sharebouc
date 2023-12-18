@@ -1,0 +1,32 @@
+<form method="post" class="flex flex-col mt-8 bg-slate-100 p-8 rounded">
+    {% if error %}
+        <div class="text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Merci de vous identifier ...</h1>
+    <label class="mt-4 mb-1 text-left" for="inputEmail">Email</label>
+    <input class="px-2 py-1
+    ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" placeholder="Votre email"
+    type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label class="mt-4 mb-1 text-left"  for="inputPassword">Mot de passe</label>
+    <input placeholder="Mot de passe"  
+    class="px-2 py-1
+    ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" 
+     type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button class="mt-5 btn-primary bg-slate-300 hover:bg-slate-200" type="submit">
+        Valider
+    </button>
+    <div class="mt-4 text-sm italic hover:font-medium">
+        <a href = "{{ path('app_forgotten_password') }}" class="">Mot de passe oublié</a></div>
+</form>

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrement{% endblock %}
+
+{% block body %}
+
+<div class="hero text-center  rounded-t-xl grow flex flex-col">
+    <div class="w-[70%] mx-auto flex flex-col justify-center items-center ">
+        {% if not linkAvalaible %}
+
+            <h1 class="text-red-500 bg-slate-800  text-xl sm:text-2xl md:text-3xl  font-semibold p-5 my-8 rounded-xl " >Ce lien a déja été utilisé et n'est plus valide !</h1>
+        {% else %}
+            <h1 class="text-slate-50 bg-slate-800 opacity-75 text-2xl sm:text-3xl md:text-4xl  font-bold p-5 my-8 rounded-xl " >Enregistrez vous pour entrer dans la bibliothèque...</h1>
+            {{ include('registration/_form_register.html.twig') }}
+        {% endif %}
+    </div>
+
+</div> 
+    
+{% endblock %}
+
+

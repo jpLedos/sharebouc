@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Book{% endblock %}
+
+{% block body %}
+    
+<div class="relative flex md:flex-row flex-col justify-between bg-slate-100 p-5 text-slate-900">
+    
+    <div class="md:mt-20 mt-5">
+        
+        <a class="text-xs text-neutral-900 mb-5 absolute top-5" href="{{ path('app_book_index') }}"> < Retour à la liste</a>
+        <img
+        class="h-[150px] md:h-[400px] book-detail-img  mx-auto mb-4 "
+        src={{ book.thumbnail }}
+        alt={{ book.title }}
+        />
+    </div>
+       
+    <div class="w-full md:w-3/4 mx-auto p-2 sm:p-10 relative">  
+        <h2 class="text-xl font-semibold ">{{ book.title }}</h2>
+        <h3 class="font-bold">
+            {% for author in book.authors %}
+                {{ author.name }}&nbsp;
+            {% endfor %}
+        </h3>
+        <p class="text-xs">Pages  : {{ book.pageCount }}</p>
+
+        <div class="my-6 mx-1 sm:mx-6 text-left text-sm font-light">
+            {{ include('book/_form.html.twig') }}
+        </div>
+        <div class=" my-8 ">
+
+        {% for userBook in book.userbooks %}
+            {% if userBook.user is same as app.user %}
+                <div class="container mb-4 w-[350px] mx-auto text-sm bg-red-100 rounded px-3 py-2">
+                    <p>Dans ma liste de lecture depuis le {{ userBook.createAt | date("d-m-Y")}}
+                    </p>
+                    <p>Statut : {{ userBook.status}}</p>
+                </div>
+            {% endif %} 
+        {%  endfor %}
+        
+
+        <p class="absolute bottom-1 right-4 text-xs italic"> ajouté le {{ book.addedAt | date("d/m/Y")  }} par {{ book.addedBy }}</p>
+    </div>  
+
+</div> 
+   
+    <a class="text-xs mr-3 mt-3 text-neutral-900" href="{{ path('app_book_index') }}"> < Retour à la liste</a>
+
+{% endblock %}
+ 

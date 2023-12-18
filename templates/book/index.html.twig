@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+La librairie
+{%endblock %} 
+{% block body %}
+
+<div class="container-fluid">
+    <h1 class="text-center mt-5 text-5xl">La librairie</h1>
+    {% set user = app.user %}
+    {% if user %}
+    <div 
+    class="grid-container" {{ react_component('Library/Books',
+     {
+        'pseudo':app.user.pseudo,
+        'books': books | serialize('json',{ groups:['book:read','userbook:read'] }),
+        'kinds': kinds | serialize('json',{ groups:['book:read'] }),
+        'status': status | serialize('json',{ groups:['userbook:read'] }),
+        'users': users | serialize('json',{ groups:['book:read'] })
+      })}}>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

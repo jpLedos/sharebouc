@@ -1,0 +1,30 @@
+{{ form_start(registrationForm,{attr:{class:'flex flex-col mt-8 bg-slate-100 p-8 rounded'}}) }}
+<h1 class="h3 mb-3 font-weight-normal">Entrez votre pseudo et creez votre mot de passe</h1>
+
+{{ form_label(registrationForm.email,'Votre Email',{'label_attr':{'class':'mt-4 mb-1 text-left',}}) }}
+{{ form_widget(registrationForm.email, {'attr':{'class':'px-2 py-1
+ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6'}}) }}
+<span class="mb-4 text-left text-red-500">{{ form_errors(registrationForm.email) }}</span>
+
+{{ form_label(registrationForm.pseudo,'Votre pseudo', {'err_attr':{'class':'mt-4 mb-1 text-left'}}) }}
+{{ form_widget(registrationForm.pseudo, {'attr':{'class':'px-2 py-1
+ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6'}}) }}
+<span class="mb-4 text-left text-red-500">{{ form_errors(registrationForm.pseudo) }}</span>
+
+{{ form_label(registrationForm.plainPassword,'Votre mot de passe', {'label_attr':{'class':'mt-4 mb-1 text-left'}} ) }}
+{{ form_widget(registrationForm.plainPassword,{'attr':{'class':'px-2 py-1
+ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6'}}) }} 
+<span class="mb-4 text-left text-red-500">{{ form_errors(registrationForm.plainPassword) }}</span>
+
+<button type="submit" class="mt-5 btn-primary bg-slate-300 hover:bg-slate-200">S'enregistrer</button>
+{{ form_end(registrationForm) }}
+
+
+
+
+
+
+    
+    
+
+

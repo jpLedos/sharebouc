@@ -1,0 +1,32 @@
+<header class="h-auto rounded-b-xl flex items-center py-4 bg-slate-800 relative">
+    <a href="{{ path('app_home') }}">
+        <img class="pl-4 rounded-full h-[20vw] max-h-[220px] min-h-[60px] min-w-[76px]" 
+            src={{ asset('images/bouc.jpeg') }} alt="logo shareBook">
+    </a>
+     <div class="mx-auto">
+        <h1 class="w-full text-center mt-5 text-3xl md:text-5xl font-semibold text-yellow-100">Bienvenue {{app.user.pseudo | default("Visiteur")}}</h1>
+        <nav class="text-center  my-3 flex flex-wrap  justify-around">
+                <a 
+                class="my-2 btn-primary bg-green-300 py-1 text-slate-800"
+                href="{{ path('app_book_index') }}" >La Librairie</a>
+                <a href="{{ path('app_googlesearch') }}" 
+                   class="my-2  btn-indigo py-1 font-normal">GoogleSearch</a>
+                <a href="{{ path('app_invitation') }}" 
+                   class="my-2 btn-primary bg-orange-400 py-1 font-normal">Parainage</a>
+                <div class="absolute right-2 top-2 flex">
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a  href={{ path('admin') }} title="admin link">
+                        <img class="w-8 h-8 mx-4" src={{ asset('icons/admin.png') }} alt="logout"></a>
+                    {% endif %}
+                    {% if app.user %}
+                        <a href={{ path('app_logout') }} title="logout icons">
+                        <img  class="w-8 h-8" src={{ asset('icons/logout.png') }} alt="logout"></a>
+                    {% else %}
+                        <a href={{ path('app_login') }} title="login icon">
+                        <img  class="w-8 h-8" src={{ asset('icons/login.png') }} alt="logout"></a>
+                    {% endif %} 
+                </div>
+              
+        </nav>
+     </div>
+    </header>

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Detail{% endblock %} 
+{% block body%}
+
+<main class="relative flex md:flex-row flex-col justify-between bg-slate-200 p-5 text-slate-900">
+    <p class="absolute top-2 right-4 text-xs italic"> ajouté le {{ book.addedAt | date("d/m/Y")  }} par {{ book.addedBy }}</p>
+
+    <div class="md:mt-20 mt-5 ">
+        <a class="text-xs text-neutral-900 mb-5 absolute top-5" href="{{ path('app_book_index') }}"> << Retour à la liste</a>
+        <img
+        class="h-[150px] md:h-[400px] book-detail-img  mx-auto mb-4 "
+        src={{ book.thumbnail | replace({'http:': 'https:'}) }}
+        alt={{ book.title }}
+        />
+
+        <div 
+        {{ react_component('Component/RatingComponent',
+        {'book': book | serialize('json',{ groups:['book:read','userbook:read'] }) }) }}>
+        </div>
+        <p class="text-center  font-semibold text-sm   ">
+            <a class="text-blue-400 hover:text-red-400 hover:underline hover:decoration-red-500" 
+            href="{{path('app_book_show',{'id': book.id})}}">Retour au livre</a></p>
+    </div>
+
+    <div class="w-full md:w-3/4 mx-auto p-2 sm:p-10 relative"> 
+        {% for userBook in book.userBooks%}
+        <div class="relative bg-white comment-card my-5 mx-1 md:mx-5 p-2 rounded">
+        <p class="absolute top-2 right-4 text-xs italic weight-sm">statut : {{ userBook.status.name }}</p>
+            <div 
+            class="inline-block"
+            {{ react_component('Component/RatingOneComponent',
+            {'note': userBook.note}) }}>
+            </div>
+            <h1 class="inline-block ml-3 font-semibold roboto">{{ userBook.commentTitle }}</h1>
+            <h2 class="italic font-light text-sm">commenté par <span class="font-semibold">{{userBook.user.pseudo}}</span> le  {{ userBook.createAt | date('d-m-Y') }}</h2>
+            <p class="my-5 comment-text">{{ userBook.comment }}</p>
+        </div>
+        {% else %}
+        <p class="text-center">Aucun commentaire n'a été fait à ce jour</p>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}
