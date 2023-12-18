@@ -16,6 +16,9 @@ symfony console d:database:create
 symfony console make:migration
 
 symfony console doctrine:fixtures:load --no-interaction
-symfony console app:create-admin admin@test.fr admin admin
+```
 
+Creation du user avec le role ROLE_ADMIN (ordre des arguments : email pseudo password ): 
+```
+symfony console app:create-admin admin@test.fr admin admin
 ```
