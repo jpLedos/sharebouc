@@ -13,13 +13,11 @@ namespace App\Controller;
 
 use App\Entity\Author;
 use App\Entity\Book;
-use App\Entity\Tag;
 use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use App\Repository\KindRepository;
 use App\Repository\StatusRepository;
-use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,7 +51,6 @@ class BookController extends AbstractController
     #[Route('/add/{googleId}', name: 'app_book_add', methods: ['GET'])]
     public function add(
         BookRepository $bookRepo,
-        TagRepository $tagRepo,
         AuthorRepository $authorRepo,
         string $googleId,
         EntityManagerInterface $entityManager,
@@ -90,11 +87,7 @@ class BookController extends AbstractController
             }
             $book->addAuthor($newAuthor);
         }
-        // test de persist sur Tag
-        // $tag = $tagRepo->findOneByName('Policier');
-        // $book->addTag($tag);
 
-        // dd($book );
         $entityManager->persist($book);
         $entityManager->flush();
 
@@ -129,10 +122,7 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $tags = $book->getKinds();
-            // dd($tags);
 
-            // $entityManager->persist($book);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_book_show', ['id' => $book->getId()], Response::HTTP_SEE_OTHER);
